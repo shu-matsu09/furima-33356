@@ -91,8 +91,13 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('First name には全角文字(漢字・ひらがな・カタカナ)を使用してください')
       end
-      it 'ユーザー本名は全角(漢字・ひらがな・カタカナ)以外は登録できない' do
-        @user.first_name = 'satou'
+      it 'ユーザー本名の名字は全角(漢字・ひらがな・カタカナ)以外は登録できない' do
+        @user.last_name = 'satou'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name には全角文字(漢字・ひらがな・カタカナ)を使用してください')
+      end
+      it 'ユーザー本名の名前は全角(漢字・ひらがな・カタカナ)以外は登録できない' do
+        @user.first_name = 'tarou'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name には全角文字(漢字・ひらがな・カタカナ)を使用してください')
       end
@@ -111,8 +116,13 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('First name kana には全角(カタカナ)を使用してください')
       end
-      it 'ユーザー本名のフリガナは、全角(カタカナ)以外は登録できない' do
-        @user.first_name_kana = 'たなか'
+      it 'ユーザー本名の名字のフリガナは、全角(カタカナ)以外は登録できない' do
+        @user.last_name_kana = 'たなか'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name kana には全角(カタカナ)を使用してください')
+      end
+      it 'ユーザー本名の名前のフリガナは、全角(カタカナ)以外は登録できない' do
+        @user.first_name_kana = 'じろう'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name kana には全角(カタカナ)を使用してください')
       end
