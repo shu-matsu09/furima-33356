@@ -43,11 +43,7 @@
                 <mxCell id="35" value="addresses" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;rounded=0;sketch=0;" vertex="1" parent="1">
                     <mxGeometry x="520" y="640" width="160" height="220" as="geometry"/>
                 </mxCell>
-<<<<<<< Updated upstream
-                <mxCell id="36" value="purchase_record_id&#10;&#10;postal_code&#10;&#10;prefectures&#10;&#10;municipality&#10;&#10;house_number&#10;&#10;building_name&#10;&#10;phone_number" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="35">
-=======
                 <mxCell id="36" value="purchase_record_id&#10;&#10;postal_code&#10;&#10;prefectures_id&#10;&#10;municipality&#10;&#10;house_number&#10;&#10;building_name&#10;&#10;phone_number" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="35">
->>>>>>> Stashed changes
                     <mxGeometry y="26" width="160" height="194" as="geometry"/>
                 </mxCell>
                 <mxCell id="42" value="" style="fontSize=12;html=1;endArrow=ERmany;exitX=0.506;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="18">
