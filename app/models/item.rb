@@ -21,5 +21,6 @@ class Item < ApplicationRecord
   belongs_to :delivery_fee_id
   belongs_to :predectures_id
   belongs_to :days_to_ship_id
+  has_one_attached :image
 
 end
