@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    @item.image = fixture_file_upload("/files/test_image.jpeg")
+    @item.image = fixture_file_upload('/files/test_image.jpeg')
   end
 
   describe '商品出品情報の保存' do
@@ -31,17 +31,17 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーが空では登録できない' do
         @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category Select")
+        expect(@item.errors.full_messages).to include('Category Select')
       end
       it '商品の状態が空では登録できない' do
         @item.condition_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition Select")
+        expect(@item.errors.full_messages).to include('Condition Select')
       end
       it '配送料の負担が空では登録できない' do
         @item.delivery_fee_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee Select")
+        expect(@item.errors.full_messages).to include('Delivery fee Select')
       end
       it '発送元の地域が空では登録できない' do
         @item.prefectures_id = ''
@@ -61,17 +61,17 @@ RSpec.describe Item, type: :model do
       it '価格の範囲が、¥300 ~ ¥9,999,999の間でなければ登録できない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it '価格は全角数字では登録できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it '価格は半角英字が含まれていると登録できない' do
         @item.price = '300dollers'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
     end
   end

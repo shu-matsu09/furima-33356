@@ -10,7 +10,7 @@ class Item < ApplicationRecord
       validates :prefectures_id
       validates :days_to_ship_id
     end
-    validates :price, numericality: { only_integer: true }, inclusion: { in: 300 .. 9999999 }
+    validates :price, numericality: { only_integer: true }, inclusion: { in: 300..9_999_999 }
   end
 
   belongs_to :user
@@ -21,5 +21,4 @@ class Item < ApplicationRecord
   belongs_to :prefectures
   belongs_to :days_to_ship
   has_one_attached :image
-
 end
