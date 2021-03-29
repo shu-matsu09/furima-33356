@@ -10,12 +10,12 @@ class Item < ApplicationRecord
       validates :days_to_ship_id
     end
     validates :price, numericality: {
-       only_integer: true, :greater_than_or_equal_to: 300, :less_than_or_equal_to: 9999999 
+       only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 
       }
   end
 
   belongs_to :user
-  extend ActiveHash::Associations::ApplicationRecordExtensions
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category_id
   belongs_to :condition_id
   belongs_to :delivery_fee_id
