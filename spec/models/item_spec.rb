@@ -14,9 +14,9 @@ RSpec.describe Item, type: :model do
     end
     context '商品が出品できない場合' do
       it '商品画像がないと登録できない' do
-        item = FactoryBot.build(:item)
-        item.valid?
-        expect(item.errors.full_messages).to include("Image can't be blank")
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が空では登録できない' do
         @item.item_name = ''
@@ -33,8 +33,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Category Select')
       end
+      it 'category_idが1の場合登録できない' do
+        @item.category_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Category Select')
+      end
       it '商品の状態が空では登録できない' do
         @item.condition_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Condition Select')
+      end
+      it 'condition_idが1の場合登録できない' do
+        @item.condition_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include('Condition Select')
       end
@@ -43,13 +53,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Delivery fee Select')
       end
+      it 'delivery_fee_idが1の場合登録できない' do
+        @item.delivery_fee_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Delivery fee Select')
+      end
       it '発送元の地域が空では登録できない' do
         @item.prefectures_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include('Prefectures Select')
       end
+      it 'prefectures_idが1の場合登録できない' do
+        @item.prefectures_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Prefectures Select')
+      end
       it '発送までの日数が空では登録できない' do
         @item.days_to_ship_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Days to ship Select')
+      end
+      it 'days_to_ship_idが1の場合登録できない' do
+        @item.days_to_ship_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include('Days to ship Select')
       end
@@ -70,6 +95,11 @@ RSpec.describe Item, type: :model do
       end
       it '価格は半角英字が含まれていると登録できない' do
         @item.price = '300dollers'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it '価格は半角英字だけでは登録できない' do
+        @item.price = 'threehandreddollers'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
