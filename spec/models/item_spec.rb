@@ -83,8 +83,13 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it '価格の範囲が、¥300 ~ ¥9,999,999の間でなければ登録できない' do
+      it '価格の範囲が、¥299以下では登録できない' do
         @item.price = '299'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
+      end
+      it '価格の範囲が、¥10,000,000以上では登録できない' do
+        @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
