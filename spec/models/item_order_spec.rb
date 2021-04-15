@@ -24,27 +24,27 @@ RSpec.describe ItemOrder, type: :model do
       it '郵便番号にはハイフンがないと保存できない' do
         @item_order.postal_code = '1234567'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@item_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '郵便番号は全角数字混合では保存できない' do
         @item_order.postal_code = '１２３-４５６７'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@item_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '郵便番号は英字混合では保存できない' do
         @item_order.postal_code = 'a12-3456'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@item_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '郵便番号のハイフンの前にある数字は3桁以外では保存できない' do
         @item_order.postal_code = '12-3456'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@item_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '郵便番号のハイフンの後にある数字は4桁以外では保存できない' do
         @item_order.postal_code = '123-567'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@item_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '都道府県がないと保存できない' do
         @item_order.prefectures_id = ''
@@ -74,22 +74,22 @@ RSpec.describe ItemOrder, type: :model do
       it '電話番号が9桁以下だと保存できない' do
         @item_order.phone_number = '090123456'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Phone number is out of setting range")
+        expect(@item_order.errors.full_messages).to include('Phone number is out of setting range')
       end
       it '電話番号が12桁以上だと保存できない' do
         @item_order.phone_number = '090123456789'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Phone number is out of setting range")
+        expect(@item_order.errors.full_messages).to include('Phone number is out of setting range')
       end
       it '電話番号は全角数字混合では保存できない' do
         @item_order.phone_number = '０９０１２３４５６７８'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Phone number is out of setting range")
+        expect(@item_order.errors.full_messages).to include('Phone number is out of setting range')
       end
       it '電話番号は半角数字以外の文字があると保存できない' do
         @item_order.phone_number = 'a0901234567'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Phone number is out of setting range")
+        expect(@item_order.errors.full_messages).to include('Phone number is out of setting range')
       end
       it 'トークンがないと保存できない' do
         @item_order.token = nil
