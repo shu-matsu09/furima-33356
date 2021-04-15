@@ -7,10 +7,10 @@ RSpec.describe ItemOrder, type: :model do
 
   describe '配送先の情報の保存' do
     context '配送先の情報が保存できる場合' do
-      it '郵便番号・都道府県・市区町村・番地・建物名・電話番号が存在すれば保存できる' do
+      it '郵便番号・都道府県・市区町村・番地・建物名・電話番号、トークンが存在すれば保存できる' do
         expect(@item_order).to be_valid
       end
-      it '郵便番号・都道府県・市区町村・番地・電話番号が存在すれば、建物名がなくても保存できる' do
+      it '郵便番号・都道府県・市区町村・番地・電話番号、トークンが存在すれば、建物名がなくても保存できる' do
         @item_order.building_name = ''
         expect(@item_order).to be_valid
       end
@@ -90,6 +90,11 @@ RSpec.describe ItemOrder, type: :model do
         @item_order.phone_number = 'a0901234567'
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("Phone number is out of setting range")
+      end
+      it 'トークンがないと保存できない' do
+        @item_order.token = nil
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
