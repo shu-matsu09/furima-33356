@@ -21,5 +21,5 @@ class Item < ApplicationRecord
   belongs_to :prefectures
   belongs_to :days_to_ship
   has_one_attached :image
-  has_one :order
+  has_one :order, dependent: :destroy
 end
