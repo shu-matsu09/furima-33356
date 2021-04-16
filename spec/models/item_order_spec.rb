@@ -2,22 +2,33 @@ require 'rails_helper'
 
 RSpec.describe ItemOrder, type: :model do
   before do
-    item = FactoryBot.build(:item)
-    user = FactoryBot.build(:user)
+    item = FactoryBot.create(:item)
+    user = FactoryBot.create(:user)
     @item_order = FactoryBot.build(:item_order, item_id: item.id, user_id: user.id)
+    sleep 0.1
   end
 
-  describe '配送先の情報の保存' do
-    context '配送先の情報が保存できる場合' do
-      it '郵便番号・都道府県・市区町村・番地・建物名・電話番号、トークンが存在すれば保存できる' do
+  describe '商品購入情報の保存' do
+    context '商品購入の情報が保存できる場合' do
+      it 'user_id,item_id,郵便番号・都道府県・市区町村・番地・建物名・電話番号、トークンが存在すれば保存できる' do
         expect(@item_order).to be_valid
       end
-      it '郵便番号・都道府県・市区町村・番地・電話番号、トークンが存在すれば、建物名がなくても保存できる' do
+      it 'user_id,item_id,郵便番号・都道府県・市区町村・番地・電話番号、トークンが存在すれば、建物名がなくても保存できる' do
         @item_order.building_name = ''
         expect(@item_order).to be_valid
       end
     end
-    context '配送先の情報が保存できない場合' do
+    context '商品購入情報が保存できない場合' do
+      it 'user_idが空では保存できない' do
+        @item_order.user_id = ''
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では保存できない' do
+        @item_order.item_id = ''
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Item can't be blank")
+      end
       it '郵便番号がないと保存できない' do
         @item_order.postal_code = ''
         @item_order.valid?
@@ -54,7 +65,7 @@ RSpec.describe ItemOrder, type: :model do
         expect(@item_order.errors.full_messages).to include('Prefectures Select')
       end
       it '都道府県が1の場合登録できない' do
-        @item_order.prefectures_id = '1'
+        @item_order.prefectures_id = 1
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include('Prefectures Select')
       end
