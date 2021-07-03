@@ -15,97 +15,97 @@ RSpec.describe Item, type: :model do
       it '商品画像がないと登録できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+        expect(@item.errors.full_messages).to include("画像を入力してください")
       end
       it '商品名が空では登録できない' do
         @item.item_name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item name can't be blank")
+        expect(@item.errors.full_messages).to include("商品名を入力してください")
       end
       it '商品の説明が空では登録できない' do
         @item.description = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Description can't be blank")
+        expect(@item.errors.full_messages).to include("商品の説明を入力してください")
       end
       it 'カテゴリーが空では登録できない' do
         @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category Select')
+        expect(@item.errors.full_messages).to include('カテゴリーを入力してください')
       end
       it 'category_idが1の場合登録できない' do
         @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category Select')
+        expect(@item.errors.full_messages).to include('カテゴリーを選択してください')
       end
       it '商品の状態が空では登録できない' do
         @item.condition_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include('Condition Select')
+        expect(@item.errors.full_messages).to include('商品の状態を入力してください')
       end
       it 'condition_idが1の場合登録できない' do
         @item.condition_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Condition Select')
+        expect(@item.errors.full_messages).to include('商品の状態を選択してください')
       end
       it '配送料の負担が空では登録できない' do
         @item.delivery_fee_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery fee Select')
+        expect(@item.errors.full_messages).to include('配送料の負担を入力してください')
       end
       it 'delivery_fee_idが1の場合登録できない' do
         @item.delivery_fee_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery fee Select')
+        expect(@item.errors.full_messages).to include('配送料の負担を選択してください')
       end
       it '発送元の地域が空では登録できない' do
         @item.prefectures_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include('Prefectures Select')
+        expect(@item.errors.full_messages).to include('発送元の地域を入力してください')
       end
       it 'prefectures_idが1の場合登録できない' do
         @item.prefectures_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Prefectures Select')
+        expect(@item.errors.full_messages).to include('発送元の地域を選択してください')
       end
       it '発送までの日数が空では登録できない' do
         @item.days_to_ship_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include('Days to ship Select')
+        expect(@item.errors.full_messages).to include('発送までの日数を入力してください')
       end
       it 'days_to_ship_idが1の場合登録できない' do
         @item.days_to_ship_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Days to ship Select')
+        expect(@item.errors.full_messages).to include('発送までの日数を選択してください')
       end
       it '価格が空では登録できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank")
+        expect(@item.errors.full_messages).to include("販売価格を入力してください")
       end
       it '価格の範囲が、¥299以下では登録できない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not included in the list')
+        expect(@item.errors.full_messages).to include('販売価格は300〜9,999,999の範囲内で入力してください')
       end
       it '価格の範囲が、¥10,000,000以上では登録できない' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not included in the list')
+        expect(@item.errors.full_messages).to include('販売価格は300〜9,999,999の範囲内で入力してください')
       end
       it '価格は全角数字では登録できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
+        expect(@item.errors.full_messages).to include('販売価格は数値で入力してください')
       end
       it '価格は半角英字が含まれていると登録できない' do
         @item.price = '300dollers'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
+        expect(@item.errors.full_messages).to include('販売価格は数値で入力してください')
       end
       it '価格は半角英字だけでは登録できない' do
         @item.price = 'threehandreddollers'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
+        expect(@item.errors.full_messages).to include('販売価格は数値で入力してください')
       end
     end
   end
