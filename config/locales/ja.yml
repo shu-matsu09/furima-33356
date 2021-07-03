@@ -18,3 +18,14 @@ ja:
         prefectures_id: 発送元の地域
         days_to_ship_id: 発送までの日数
         price: 販売価格
+  activemodel:
+    attributes:
+      item_order:
+        user_id: ユーザー名
+        item_id: 商品名
+        token: クレジットカード情報
+        postal_code: 郵便番号
+        prefectures_id: 都道府県名
+        municipality: 市町村名
+        house_number: 番地
+        phone_number: 電話番号
